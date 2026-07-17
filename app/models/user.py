@@ -29,10 +29,11 @@ class User(BaseModel):
     role: Mapped[str] = mapped_column(
         String(50),
         nullable=False,
-        default="student",
+        default="user",   # lowercase is a common convention
     )
 
     is_active: Mapped[bool] = mapped_column(
         Boolean,
+        nullable=False,
         default=True,
     )

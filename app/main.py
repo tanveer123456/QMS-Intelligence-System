@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
 from app.core.logger import logger
-
+from app.api.v1.endpoints.auth import router as auth_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -30,6 +30,11 @@ app = FastAPI(
     version=settings.app_version,
     description="Enterprise Quality Intelligence Platform",
     lifespan=lifespan,
+)
+
+app.include_router(
+    auth_router,
+    prefix="/api/v1",
 )
 
 app.add_middleware(
